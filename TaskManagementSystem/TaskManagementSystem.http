@@ -1,6 +1,112 @@
-@TaskManagementSystem_HostAddress = http://localhost:5233
-
-GET {{TaskManagementSystem_HostAddress}}/weatherforecast/
+### Get All Users
+GET http://localhost:5233/api/home/GetAllUsers
 Accept: application/json
 
-###
+
+### Get User by Id
+POST http://localhost:5233/api/home/GetById
+Content-Type: application/json
+Accept: application/json
+
+{
+  "UserId":"3875b15b-616f-4f96-b190-b8cf25e329ce"
+}
+
+
+### Add New User
+POST http://localhost:5233/api/home/AddUser
+Content-Type: application/json
+Accept: application/json
+
+{
+  "UserId": "3875b15b-616f-4f96-b190-b8cf25e329ce",
+  "UserName":"NirlazCheck"
+
+}
+
+
+### Delete User by Id
+DELETE http://localhost:5233/api/home/DeleteUserById
+Content-Type: application/json
+Accept: application/json
+
+{
+  "UserId": "3875b15b-616f-4f96-b190-b8cf25e329ce"
+}
+
+
+
+### Add Project by User ID
+POST http://localhost:5233/Project/AddProByUserId
+Content-Type: application/json
+Accept: application/json
+
+{
+  "userId": "3875b15b-616f-4f96-b190-b8cf25e329ce",
+  "projectName": "CheckProject1"
+}
+
+
+### Get Project by User ID
+GET http://localhost:5233/Project
+Content-Type: application/json
+Accept: application/json
+
+{
+  "userId": "3875b15b-616f-4f96-b190-b8cf25e329ce"
+}
+
+
+### Delete Project by ID
+DELETE http://localhost:5233/Project/DelProById
+Content-Type: application/json
+Accept: application/json
+
+{
+  "projectId": "99816d4d-1b5d-405e-ba7e-f2641545b106"
+}
+
+
+
+### Get Tasks by Project ID
+POST http://localhost:5233/TaskContoller/GetTasksByProId
+Content-Type: application/json
+Accept: application/json
+
+{
+   "projectId":"ac0dad00-3cc1-4e8a-bd63-8a830c0df871"
+}
+
+
+### Add Task by Project ID
+POST http://localhost:5233/TaskContoller/AddTaskByProjectId
+Content-Type: application/json
+Accept: application/json
+
+{
+  
+  "projectId": "ac0dad00-3cc1-4e8a-bd63-8a830c0df871",
+  "TaskName": "New Task4"
+}
+
+
+### Delete Task by Task ID
+DELETE http://localhost:5233/TaskContoller/DeleteTaskByTaskId
+Content-Type: application/json
+Accept: application/json
+
+{
+  "taskId": "59550ff2-6230-4323-0512-08dd57eda569"
+}
+
+
+### Update Task by Task ID
+PUT http://localhost:5233/TaskContoller/UpdateTaskByTaskId
+Content-Type: application/json
+Accept: application/json
+
+{
+  "taskId": "your-task-id-here",
+  "projectId": "your-project-id-here",
+  "taskName": "Updated Task Name"
+}

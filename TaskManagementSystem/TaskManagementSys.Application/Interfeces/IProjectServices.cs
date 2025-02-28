@@ -8,7 +8,8 @@ namespace TaskManagementSystem.TaskManagementSys.Application.Interfeces
 
     {
         Task<IEnumerable<ProjectDTO>> GetAllProject();
-        Task<ICollection<ProjectDTO?>> GetProjectById(ProjectDTO projectDTO);
+        Task<ICollection<ProjectDTO?>> GetProjectByUserId ( ProjectDTO projectDTO);
+        Task<ProjectDTO?> GetProjectByProId ( Guid projectId );
 
         Task<string> DeleteProjectById(ProjectDTO projectDTO);
 

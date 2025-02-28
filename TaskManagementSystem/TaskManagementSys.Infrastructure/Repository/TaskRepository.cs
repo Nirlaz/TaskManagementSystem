@@ -10,22 +10,32 @@ namespace TaskManagementSystem. TaskManagementSys. Infrastructure. Repository
     public class TaskRepository : ITaskRepository
     {
         private readonly ApplicationDbContext _context;
-        private readonly ProjectRepository _projectRepository;
-        public TaskRepository ( ApplicationDbContext context , ProjectRepository projectRepository )
+        private readonly IProjectRepository _projectRepository;
+        public TaskRepository ( ApplicationDbContext context , IProjectRepository projectRepository )
         {
             _context = context;
             _projectRepository = projectRepository;
         }
         public async Task<string> AddTask ( Tasks task )
         {
-            var existingTask =  await _context.Taskses.FindAsync(task.TaskId);
+            
+            var projectExists = await _projectRepository.GetProjectByProId(task.ProjectId);
+            if ( projectExists == null )
+            {
+                return "Project does not exist! Cannot add task.";
+            }
+            var existingTask =  await GetTaskById(task.TaskId);
             if ( existingTask != null )
             {
                 return "TaskExist";
+
             }
-            await _context. Taskses. AddAsync ( task );
+
+            // Add Task
+            await _context. Taskses. AddAsync( task );
             await _context. SaveChangesAsync ( );
-            return "Task Added Successfull";
+
+            return "Task Added Successfully";
         }
 
         public async Task<string> DeleteTaskById ( Tasks Task )
@@ -45,12 +55,10 @@ namespace TaskManagementSystem. TaskManagementSys. Infrastructure. Repository
         }
         public async Task<ICollection<Tasks?>> GetAllTaskByProjectId ( Tasks task )
         {
-            var existingProject = await _projectRepository.GetProjectById(task.ProjectId);
-            if ( existingProject != null )
-            {
+           
+            
                 return await _context. Taskses. Where ( t => t. ProjectId == task. ProjectId ). ToListAsync ( );
-            }
-            return null;
+            
         }
         public async Task<string> UpdateTaskByTaskId ( Tasks task )
         {

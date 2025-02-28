@@ -55,10 +55,11 @@ namespace TaskManagementSystem.TaskManagementSys.Application.Services
            
         }
 
-        public async Task<UserDTO?> GetUserById(Guid userId)
+        public async Task<UserDTO?> GetUserById(UserDTO userDTO)
         {
-            var user = await _userRepository.GetUserById(userId);
-            return user != null ? _mapper.Map<UserDTO>(user):null;
+            var user = _mapper.Map<User>(userDTO);
+            var users = await _userRepository.GetUserById(user.UserId);
+            return users != null ? _mapper.Map<UserDTO>(users):null;
         }
     }
 }

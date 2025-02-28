@@ -14,7 +14,7 @@ namespace TaskManagementSystem. TaskManagementSys. Infrastructure. Repository
         }
         public async Task<string> AddProject ( Project project )
         {
-            var result = await _context.Projects.AddAsync(project);
+             await _context.Projects.AddAsync(project);
             await _context. SaveChangesAsync ( );
             return "Data Successfully added";
         }
@@ -30,10 +30,15 @@ namespace TaskManagementSystem. TaskManagementSys. Infrastructure. Repository
             return @"Project Don't Exist";
         }
 
-
-        public async Task<ICollection<Project?>> GetProjectById ( Guid projectId )
+        public async Task<Project?> GetProjectByProId ( Guid projectId )
         {
-            return await _context. Projects. Include ( p => p. Taskses ). Where ( p => p. ProjectId == projectId ).ToListAsync();
+            return await _context. Projects.FindAsync(projectId);
+
+        }
+
+        public async Task<ICollection<Project?>> GetProjectByUserId ( Guid userId )
+        {
+            return await _context. Projects. Include ( p => p. Taskses ). Where ( p => p. UserId == userId ).ToListAsync();
         }
     }
 }

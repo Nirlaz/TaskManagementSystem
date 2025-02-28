@@ -47,10 +47,14 @@ namespace TaskManagementSystem.TaskManagementSys.Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task<ICollection<ProjectDTO?>> GetProjectById(ProjectDTO projectDTO)
+        public async Task<ProjectDTO?> GetProjectByProId ( Guid projectId )
+        {
+            return _mapper.Map<ProjectDTO>(await _projectRepository. GetProjectByProId ( projectId ));
+        }
+        public async Task<ICollection<ProjectDTO?>> GetProjectByUserId(ProjectDTO projectDTO)
         {
             var project = _mapper.Map<Project>(projectDTO);
-            var result = await _projectRepository.GetProjectById(project.ProjectId);
+            var result = await _projectRepository.GetProjectByUserId(project.UserId);
             if(result != null)
             {
                 return _mapper.Map<ICollection<ProjectDTO>>(result);

@@ -10,19 +10,26 @@ namespace TaskManagementSystem. TaskManagementSys. API. Controllers
     public class TaskContoller : ControllerBase
     {
         private readonly ITaskServices _taskServices;
-        public TaskContoller ( ITaskServices taskServices )
+        private readonly IProjectServices _projectServices;
+        public TaskContoller ( ITaskServices taskServices ,IProjectServices projectServices )
         {
             _taskServices = taskServices;
+            _projectServices = projectServices;
         }
         [Route ( "GetTasksByProId" )]
-        [HttpGet]
-        public async Task<ActionResult<ICollection<TaskDTO>>> GetTaskByProId ( [FromBody] TaskDTO taskDTO )
+        [HttpPost]
+        public async Task<ActionResult<ICollection<TaskDTO?>>> GetTaskByProId ( [FromBody] TaskDTO taskDTO )
         {
-            var result = await _taskServices.GetTaskByProId(taskDTO);
-            return result != null ? Ok ( result ) : BadRequest ( );
+            var check = await _projectServices.GetProjectByProId(taskDTO.ProjectId);
+            if ( check != null )
+            {
+                var result = await _taskServices.GetTaskByProId(taskDTO);
+                return result != null ? Ok ( result ) : BadRequest ( result );
+            }
+            return BadRequest ("Project Don't exist");
         }
         [Route ( "AddTaskByProjectId" )]
-        [HttpGet]
+        [HttpPost]
         public async Task<ActionResult<string>> AddTaskByProjectId ( [FromBody] TaskDTO taskDTO )
         {
             var result = await _taskServices.AddTaskByProjectId(taskDTO);
@@ -39,7 +46,7 @@ namespace TaskManagementSystem. TaskManagementSys. API. Controllers
         [HttpPut]
         public async Task<ActionResult<string>> UpdateTaskByTaskId ( [FromBody] TaskDTO taskDTO )
         {
-            if ( taskDTO. TaskId == Guid. Empty || taskDTO. ProjectId == Guid. Empty )
+            if ( taskDTO. TaskId == Guid. Empty )
             {
                 return "Feild missing";
             }

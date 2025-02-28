@@ -20,6 +20,10 @@ namespace TaskManagementSystem. TaskManagementSys. Application. Services
         }
         public async Task<string> AddTaskByProjectId ( TaskDTO taskDTO )
         {
+            if ( taskDTO. ProjectId == Guid. Empty )
+            {
+                return "ProjectID is neededed";
+            }
             if ( taskDTO. TaskId == Guid. Empty ) // Assign a new GUID if TaskId is empty
             {
                 taskDTO. TaskId = Guid. NewGuid ( );
@@ -36,7 +40,7 @@ namespace TaskManagementSystem. TaskManagementSys. Application. Services
 
         public async Task<string> DeleteTaskById ( TaskDTO taskDTO )
         {
-            if ( taskDTO. TaskId == Guid. Empty || taskDTO. ProjectId == Guid. Empty )
+            if ( taskDTO. TaskId == Guid. Empty)
             {
                 return "Feild Is missing";
             }

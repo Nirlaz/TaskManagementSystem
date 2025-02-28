@@ -15,11 +15,15 @@ builder. Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServ
 
 //Add services for Dependency Injection
 builder.Services.AddScoped<IUserServices, UserServices>();
-builder.Services.AddScoped<ITaskServices, TaskServices>();
+builder. Services. AddScoped<IUserRepository , UserRepository> ( );
+
+
 builder.Services.AddScoped<IProjectServices, ProjectServices>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+
+builder. Services. AddScoped<ITaskServices , TaskServices> ( );
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();  
+
 builder.Services.AddAutoMapper(typeof(Program));
 
 

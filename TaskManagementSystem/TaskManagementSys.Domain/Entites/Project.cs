@@ -12,12 +12,12 @@ namespace TaskManagementSystem.TaskManagementSys.Domain.Entites
         public Guid ProjectId { get; set; }
         public string? ProjectName { get; set; }
 
-        [JsonIgnore]
+
         public User? User { get; set; }
 
         public Guid UserId { get; set; }
 
-        [JsonIgnore]
+
         public ICollection<Tasks>? Taskses { get; set; }
     }
 }

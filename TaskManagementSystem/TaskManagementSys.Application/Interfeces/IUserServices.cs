@@ -7,7 +7,7 @@ namespace TaskManagementSystem.TaskManagementSys.Application.Interfeces
     public interface IUserServices
     {
         Task<ICollection<UserDTO>> GetAllUser();
-        Task<UserDTO?> GetUserById(Guid userId);
+        Task<UserDTO?> GetUserById(UserDTO userDTO);
 
         Task<string> DeleteUserById(UserDTO userDTO);
 

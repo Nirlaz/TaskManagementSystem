@@ -29,7 +29,7 @@ namespace TaskManagementSystem. TaskManagementSys. API. Controllers
         [HttpGet]
         public async Task<ActionResult<ICollection<ProjectDTO?>>> GetProjectById ( [FromBody] ProjectDTO projectDTO )
         {
-            var result = await _projectServices.GetProjectById(projectDTO);
+            var result = await _projectServices.GetProjectByUserId(projectDTO);
             return result != null ? Ok ( result ) : BadRequest ( result );
         }
 

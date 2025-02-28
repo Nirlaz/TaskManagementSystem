@@ -28,9 +28,9 @@ namespace TaskManagementSystem.TaskManagementSys.API.Controllers
         //When url is hit UserData for paticular Id is given
         [Route("GetById")]
         [HttpPost]
-        public async Task<ActionResult<UserDTO>> GetById([FromBody] Guid Id)
+        public async Task<ActionResult<UserDTO>> GetById([FromBody] UserDTO userDTO)
         {
-            var user = await _userServices.GetUserById(Id);
+            var user = await _userServices.GetUserById(userDTO);
 
             if (user == null)
             {

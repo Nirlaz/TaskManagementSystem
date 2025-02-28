@@ -12,7 +12,7 @@ namespace TaskManagementSystem.TaskManagementSys.Domain.Entites
         public string? UserName { get; set; }
 
 
-        [JsonIgnore]
+
         public ICollection<Project>? Projects { get; set; }
     }
 }

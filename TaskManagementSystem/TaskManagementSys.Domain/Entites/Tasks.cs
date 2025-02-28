@@ -14,7 +14,6 @@ namespace TaskManagementSystem.TaskManagementSys.Domain.Entites
         public string? TaskName { get; set; }
         public DateTime DeadLine { get; set; }
 
-        [JsonIgnore]
         public Project? Project { get; set; }
 
         public Guid ProjectId { get; set; }
