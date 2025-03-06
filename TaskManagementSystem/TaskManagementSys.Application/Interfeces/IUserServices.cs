@@ -11,6 +11,8 @@ namespace TaskManagementSystem.TaskManagementSys.Application.Interfeces
 
         Task<string> DeleteUserById(UserDTO userDTO);
 
+        Task<string > UpdateUserById(UserDTO userDTO);
+
         Task<string> AddUser(UserDTO userDTO);
     }
 }

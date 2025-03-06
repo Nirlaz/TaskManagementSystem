@@ -9,6 +9,7 @@ namespace TaskManagementSystem. TaskManagementSys. Domain. Interfaces
         Task<Project?> GetProjectByProId ( Guid projectId );
         Task<string> AddProject ( Project project );
         Task<string> DeleteProjectById( Guid projectId );
+        Task<string> UpdateProById ( Project project );
 
 
     }

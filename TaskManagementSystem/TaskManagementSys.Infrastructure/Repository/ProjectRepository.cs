@@ -40,5 +40,19 @@ namespace TaskManagementSystem. TaskManagementSys. Infrastructure. Repository
         {
             return await _context. Projects. Include ( p => p. Taskses ). Where ( p => p. UserId == userId ).ToListAsync();
         }
+
+        public async Task<string> UpdateProById ( Project project )
+        {
+            var projectData = await _context.Projects.FirstOrDefaultAsync(p=>p.ProjectId==project.ProjectId);
+            if ( projectData != null )
+            {
+                projectData. ProjectName = project. ProjectName;
+                _context. Projects. Update ( projectData );
+                await _context. SaveChangesAsync ( );
+                return "Project Updated Succesfully";
+
+            }
+            return "Project don't exist";
+        }
     }
 }

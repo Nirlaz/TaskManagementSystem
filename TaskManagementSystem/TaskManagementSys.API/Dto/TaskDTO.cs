@@ -9,7 +9,6 @@ namespace TaskManagementSystem.TaskManagementSys.API.Dto
         public string? TaskName { get; set; }
         public DateTime? DeadLine { get; set; }
 
-        public Guid ProjectId { get; set; }    
-
+        public Guid ProjectId { get; set; }
     }
 }

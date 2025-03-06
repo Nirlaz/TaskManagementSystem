@@ -6,7 +6,7 @@ namespace TaskManagementSystem.TaskManagementSys.Domain.Interfaces
     {
         Task<ICollection<User?>> GetAllUser();
         Task<User?> GetUserById(Guid userId);
-
+        Task<string> UpdateUserById ( User user );
         Task<string> DeleteUserById(Guid userId);
 
         Task<bool> AddUser(User user);

@@ -7,37 +7,46 @@ using TaskManagementSystem.TaskManagementSys.Application.Interfeces;
 
 namespace TaskManagementSystem.TaskManagementSys.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route ( "api/[controller]" )]
     [ApiController]
     public class HomeController : ControllerBase
     {
 
         private readonly IUserServices _userServices;
-        public HomeController(IUserServices userServices) => _userServices = userServices;
+        public HomeController ( IUserServices userServices ) => _userServices = userServices;
 
 
         //When hit in this api All Users Detail with project and task is given
-        [Route("GetAllUsers")]
+        [Route ( "GetAllUsers" )]
         [HttpGet]
-        public async Task<ICollection<UserDTO>> GetAllUsers()
+        public async Task<ICollection<UserDTO>> GetAllUsers ( )
         {
             var user =await _userServices.GetAllUser();
             return user;
         }
 
         //When url is hit UserData for paticular Id is given
-        [Route("GetById")]
+        [Route ( "GetById" )]
         [HttpPost]
-        public async Task<ActionResult<UserDTO>> GetById([FromBody] UserDTO userDTO)
+        public async Task<ActionResult<UserDTO>> GetById ( [FromBody] UserDTO userDTO )
         {
             var user = await _userServices.GetUserById(userDTO);
 
-            if (user == null)
+            if ( user == null )
             {
-                return NotFound("User not found");
+                return NotFound ( "User not found" );
             }
 
-            return Ok(user);
+            return Ok ( user );
+        }
+
+
+        [Route( "UpdateUserById" )]
+        [HttpPut]
+        public async Task<ActionResult<string>> UpdateUserById ( [FromBody]UserDTO userDTO )
+        {
+            var result = await _userServices.UpdateUserById(userDTO);
+            return result. Contains ( "Succesfully" ) ? Ok ( result ) : BadRequest ( result );
         }
 
         //Use for Adding User

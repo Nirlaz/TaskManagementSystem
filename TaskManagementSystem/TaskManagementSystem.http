@@ -2,14 +2,23 @@
 GET http://localhost:5233/api/home/GetAllUsers
 Accept: application/json
 
+### Upadate User by Id
+PUT http://localhost:5233/api/home/UpdateUserById
+Content-Type: application/json
+Accept: application/json
 
+
+{
+    "UserId": "655de2e8-ff55-4dc9-b7bf-652f415f7930",
+    "UserName":"Kadds"
+}
 ### Get User by Id
 POST http://localhost:5233/api/home/GetById
 Content-Type: application/json
 Accept: application/json
 
 {
-  "UserId":"3875b15b-616f-4f96-b190-b8cf25e329ce"
+  "UserId":"376a06cb-f492-4836-a202-74fb09f38050"
 }
 
 
@@ -19,8 +28,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "UserId": "3875b15b-616f-4f96-b190-b8cf25e329ce",
-  "UserName":"NirlazCheck"
+  "UserId": "376a06cb-f492-4836-a202-74fb09f38050",
+  "UserName":"Kamal"
 
 }
 
@@ -42,20 +51,30 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "userId": "3875b15b-616f-4f96-b190-b8cf25e329ce",
+  "userId": "376a06cb-f492-4836-a202-74fb09f38050",
   "projectName": "CheckProject1"
 }
 
 
 ### Get Project by User ID
-GET http://localhost:5233/Project
+POST http://localhost:5233/Project/GetProByUserId
 Content-Type: application/json
 Accept: application/json
 
 {
-  "userId": "3875b15b-616f-4f96-b190-b8cf25e329ce"
+  "userId":"32a11df4-15f4-4ad9-933a-1934f8fdb2a1"
 }
 
+###Update Project by projectId
+PUT http://localhost:5233/Project/UpdateProById
+Content-Type: application/json
+Accept: application/json
+
+
+{
+    "projectId": "ab0b72cf-9f1d-454a-ab0e-058337cc16b7",
+    "projectName":"final"
+}
 
 ### Delete Project by ID
 DELETE http://localhost:5233/Project/DelProById
@@ -86,7 +105,7 @@ Accept: application/json
 {
   
   "projectId": "ac0dad00-3cc1-4e8a-bd63-8a830c0df871",
-  "TaskName": "New Task4"
+  "TaskName": "pending"
 }
 
 
@@ -96,7 +115,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "taskId": "59550ff2-6230-4323-0512-08dd57eda569"
+  "taskId": "cdfa998e-fc4c-43b8-0511-08dd57eda569"
 }
 
 
@@ -106,7 +125,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "taskId": "your-task-id-here",
-  "projectId": "your-project-id-here",
-  "taskName": "Updated Task Name"
+  "taskId": "b5bcb08a-c412-49e6-181d-08dd57ee0af2",
+  
+  "taskName": "Updated"
 }

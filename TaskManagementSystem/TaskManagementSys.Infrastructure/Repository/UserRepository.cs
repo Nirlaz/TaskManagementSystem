@@ -53,5 +53,19 @@ namespace TaskManagementSystem.TaskManagementSys.Infrastructure.Repository
 
 
         }
+
+        public async Task<string> UpdateUserById ( User user )
+        {
+            var userData = await _context.Users.FirstOrDefaultAsync(u=>u.UserId==user.UserId);
+            if ( userData != null )
+            {
+                userData. UserName = user. UserName;
+                _context. Users. Update ( userData );
+                await _context. SaveChangesAsync ( );
+                return "User Updated Succesfully";
+
+            }
+            return "User don't exist";
+        }
     }
 }

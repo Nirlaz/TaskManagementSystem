@@ -25,6 +25,13 @@ builder. Services. AddScoped<ITaskServices , TaskServices> ( );
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();  
 
 builder.Services.AddAutoMapper(typeof(Program));
+builder. Services. AddCors ( options =>
+{
+    options. AddPolicy ( "AllowAll" ,
+        policy => policy. AllowAnyOrigin ( )
+                        . AllowAnyMethod ( )
+                        . AllowAnyHeader ( ) );
+} );
 
 
 
@@ -33,6 +40,8 @@ builder.Services.AddAutoMapper(typeof(Program));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+app. UseCors ( "AllowAll" );
 
 app.UseHttpsRedirection();
 

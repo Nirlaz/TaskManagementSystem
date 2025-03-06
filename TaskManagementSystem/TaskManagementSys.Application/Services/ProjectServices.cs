@@ -5,6 +5,7 @@ using TaskManagementSystem.TaskManagementSys.API.Dto;
 using TaskManagementSystem.TaskManagementSys.Application.Interfeces;
 using TaskManagementSystem.TaskManagementSys.Domain.Entites;
 using TaskManagementSystem.TaskManagementSys.Domain.Interfaces;
+using TaskManagementSystem. TaskManagementSys. Infrastructure. Repository;
 
 namespace TaskManagementSystem.TaskManagementSys.Application.Services
 {
@@ -60,6 +61,12 @@ namespace TaskManagementSystem.TaskManagementSys.Application.Services
                 return _mapper.Map<ICollection<ProjectDTO>>(result);
             }
             return null;
+        }
+
+        public async Task<string> UpdateProById ( ProjectDTO projectDTO )
+        {
+            var project = _mapper.Map<Project>(projectDTO);
+            return await _projectRepository. UpdateProById ( project );
         }
     }
 }

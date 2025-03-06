@@ -61,5 +61,11 @@ namespace TaskManagementSystem.TaskManagementSys.Application.Services
             var users = await _userRepository.GetUserById(user.UserId);
             return users != null ? _mapper.Map<UserDTO>(users):null;
         }
+
+        public  async Task<string> UpdateUserById ( UserDTO userDTO )
+        {
+            var user = _mapper.Map<User>(userDTO);
+            return await _userRepository. UpdateUserById ( user );
+        }
     }
 }
